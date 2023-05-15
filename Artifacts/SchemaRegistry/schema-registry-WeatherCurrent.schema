@@ -1,0 +1,396 @@
+{
+ "type": "record",
+ "namespace": "cloudera.cdp.pattern.weather",
+ "name": "WeatherEvent",
+ "fields": [
+  {
+   "name": "coord",
+   "type": [
+    "null",
+    {
+     "type": "record",
+     "name": "coordinates",
+     "namespace": "cloudera.cdp.pattern.weather.coord",
+     "fields": [
+      {
+       "name": "lon",
+       "type": [
+        "null",
+        "float"
+       ],
+       "default": null
+      },
+      {
+       "name": "lat",
+       "type": [
+        "null",
+        "float"
+       ],
+       "default": null
+      }
+     ]
+    }
+   ],
+   "default": null
+  },
+  {
+   "name": "weather",
+   "type": [
+    "null",
+    {
+     "type": "array",
+     "items": {
+      "type": "record",
+      "name": "weatherdata",
+      "namespace": "cloudera.cdp.pattern.weather.weatherdata",
+      "fields": [
+       {
+        "name": "id",
+        "type": [
+         "null",
+         "int"
+        ],
+        "default": null
+       },
+       {
+        "name": "main",
+        "type": [
+         "null",
+         "string"
+        ],
+        "default": null
+       },
+       {
+        "name": "description",
+        "type": [
+         "null",
+         "string"
+        ],
+        "default": null
+       },
+       {
+        "name": "icon",
+        "type": [
+         "null",
+         "string"
+        ],
+        "default": null
+       }
+      ]
+     }
+    }
+   ],
+   "default": null
+  },
+  {
+   "name": "base",
+   "type": [
+    "null",
+    "string"
+   ],
+   "default": null
+  },
+  {
+   "name": "main",
+   "type": [
+    "null",
+    {
+     "type": "record",
+     "name": "maindata",
+     "namespace": "cloudera.cdp.pattern.weather.maindata",
+     "fields": [
+      {
+       "name": "temp",
+       "type": [
+        "null",
+        "float"
+       ],
+       "default": null
+      },
+      {
+       "name": "feels_like",
+       "type": [
+        "null",
+        "float"
+       ],
+       "default": null
+      },
+      {
+       "name": "temp_min",
+       "type": [
+        "null",
+        "float"
+       ],
+       "default": null
+      },
+      {
+       "name": "temp_max",
+       "type": [
+        "null",
+        "float"
+       ],
+       "default": null
+      },
+      {
+       "name": "pressure",
+       "type": [
+        "null",
+        "int"
+       ],
+       "default": null
+      },
+      {
+       "name": "sea_level",
+       "type": [
+        "null",
+        "int"
+       ],
+       "default": null
+      },
+      {
+       "name": "grnd_level",
+       "type": [
+        "null",
+        "int"
+       ],
+       "default": null
+      },
+      {
+       "name": "humidity",
+       "type": [
+        "null",
+        "int"
+       ],
+       "default": null
+      }
+     ]
+    }
+   ],
+   "default": null
+  },
+  {
+   "name": "visibility",
+   "type": [
+    "null",
+    "int"
+   ],
+   "default": null
+  },
+  {
+   "name": "wind",
+   "type": [
+    "null",
+    {
+     "type": "record",
+     "name": "winddata",
+     "namespace": "cloudera.cdp.pattern.weather.winddata",
+     "fields": [
+      {
+       "name": "speed",
+       "type": [
+        "null",
+        "float"
+       ],
+       "default": null
+      },
+      {
+       "name": "deg",
+       "type": [
+        "null",
+        "int"
+       ],
+       "default": null
+      },
+      {
+       "name": "gust",
+       "type": [
+        "null",
+        "float"
+       ],
+       "default": null
+      }
+     ]
+    }
+   ],
+   "default": null
+  },
+  {
+   "name": "clouds",
+   "type": [
+    "null",
+    {
+     "type": "record",
+     "name": "cloudsdata",
+     "namespace": "cloudera.cdp.pattern.weather.cloudsdata",
+     "fields": [
+      {
+       "name": "all",
+       "type": [
+        "null",
+        "int"
+       ],
+       "default": null
+      }
+     ]
+    }
+   ],
+   "default": null
+  },
+  {
+   "name": "rain",
+   "type": [
+    "null",
+    {
+     "name": "rain",
+     "type": "record",
+     "fields": [
+      {
+       "name": "_1h",
+       "type": [
+        "null",
+        "float"
+       ],
+       "default": null
+      },
+      {
+       "name": "_3h",
+       "type": [
+        "null",
+        "float"
+       ],
+       "default": null
+      }
+     ]
+    }
+   ],
+   "default": null
+  },
+  {
+   "name": "snow",
+   "type": [
+    "null",
+    {
+     "name": "snow",
+     "type": "record",
+     "fields": [
+      {
+       "name": "_1h",
+       "type": [
+        "null",
+        "float"
+       ],
+       "default": null
+      },
+      {
+       "name": "_3h",
+       "type": [
+        "null",
+        "float"
+       ],
+       "default": null
+      }
+     ]
+    }
+   ],
+   "default": null
+  },
+  {
+   "name": "dt",
+   "type": [
+    "null",
+    "int"
+   ],
+   "default": null
+  },
+  {
+   "name": "sys",
+   "type": [
+    "null",
+    {
+     "type": "record",
+     "name": "sysdata",
+     "namespace": "cloudera.cdp.pattern.weather.sysdata",
+     "fields": [
+      {
+       "name": "type",
+       "type": [
+        "null",
+        "int"
+       ],
+       "default": null
+      },
+      {
+       "name": "id",
+       "type": [
+        "null",
+        "int"
+       ],
+       "default": null
+      },
+      {
+       "name": "message",
+       "type": [
+        "null",
+        "float"
+       ],
+       "default": null
+      },
+      {
+       "name": "country",
+       "type": [
+        "null",
+        "string"
+       ],
+       "default": null
+      },
+      {
+       "name": "sunrise",
+       "type": [
+        "null",
+        "long"
+       ],
+       "default": null
+      },
+      {
+       "name": "sunset",
+       "type": [
+        "null",
+        "long"
+       ],
+       "default": null
+      }
+     ]
+    }
+   ],
+   "default": null
+  },
+  {
+   "name": "timezone",
+   "type": "int"
+  },
+  {
+   "name": "id",
+   "type": [
+    "null",
+    "long"
+   ],
+   "default": null
+  },
+  {
+   "name": "name",
+   "type": [
+    "null",
+    "string"
+   ],
+   "default": null
+  },
+  {
+   "name": "cod",
+   "type": [
+    "null",
+    "int"
+   ],
+   "default": null
+  }
+ ]
+}

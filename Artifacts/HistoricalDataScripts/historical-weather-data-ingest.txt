@@ -1,0 +1,63 @@
+# Create an external table "weather_hist_external"
+CREATE EXTERNAL TABLE weather_hist_external(
+                                            city string,
+                                            local_date date, 
+                                            avg_temperature double, 
+                                            min_temperature double, 
+                                            max_temperature double, 
+                                            avg_feels_like_temperature double, 
+                                            min_feels_like_temperature double, 
+                                            max_feels_like_temperature double, 
+                                            avg_humidity double, 
+                                            min_humidity double, 
+                                            max_humidity double, 
+                                            avg_pressure double, 
+                                            min_pressure double, 
+                                            max_pressure double, 
+                                            avg_wind_speed double, 
+                                            min_wind_speed double, 
+                                            max_wind_speed double, 
+                                            avg_snow_1h double, 
+                                            min_snow_1h double, 
+                                            max_snow_1h double, 
+                                            avg_rain_1h double, 
+                                            min_rain_1h double, 
+                                            max_rain_1h double, 
+                                            creation_timestamp timestamp
+                                            )
+LOCATION 's3a://[***COMPLETE-PATH-OF-S3-BUCKET***]/bi-at-scale-historic-weather-data/';
+
+
+# Insert data into the weather_forecast table
+INSERT INTO weather_forecast --PARTITION (city) -- CHECK FOR PARTITION ERROR ---- 
+SELECT  local_date, 
+        avg_temperature as avg_temp_k, 
+        min_temperature as min_temp_k, 
+        max_temperature as max_temp_k, 
+        (avg_temperature - 273.15) * 9/5 + 32 as avg_temp_f, 
+        (min_temperature - 273.15) * 9/5 + 32 as min_temp_f, 
+        (max_temperature - 273.15) * 9/5 + 32 as max_temp_f, 
+        avg_feels_like_temperature as avg_feels_like_temp_k, 
+        min_feels_like_temperature as min_feels_like_temp_k, 
+        max_feels_like_temperature as max_feels_like_temp_k, 
+        (avg_feels_like_temperature - 273.15) * 9/5 + 32 as avg_feels_like_temp_f, 
+        (min_feels_like_temperature - 273.15) * 9/5 + 32 as min_feels_like_temp_f, 
+        (max_feels_like_temperature - 273.15) * 9/5 + 32 as max_feels_like_temp_f, 
+        avg_humidity, 
+        min_humidity, 
+        max_humidity, 
+        avg_pressure, 
+        min_pressure, 
+        max_pressure, 
+        avg_wind_speed, 
+        min_wind_speed, 
+        max_wind_speed, 
+        avg_snow_1h, 
+        min_snow_1h, 
+        max_snow_1h, 
+        avg_rain_1h, 
+        min_rain_1h, 
+        max_rain_1h, 
+        creation_timestamp,
+        city
+FROM    weather_hist_external;

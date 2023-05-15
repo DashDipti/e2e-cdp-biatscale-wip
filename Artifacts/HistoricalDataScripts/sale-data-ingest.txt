@@ -1,0 +1,38 @@
+# Creates an external table "sales"
+CREATE EXTERNAL TABLE `sales_external`(
+  `store_nbr` bigint,
+  `item_nbr` bigint,
+  `local_date` date,
+  `city_name` string,
+  `item_name` string,
+  `units` double)
+ROW FORMAT SERDE
+  'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe'
+STORED AS INPUTFORMAT
+  'org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat'
+OUTPUTFORMAT
+  'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat'
+LOCATION
+  's3a://[***COMPLETE-PATH-OF-S3-BUCKET***]/bi-at-scale-historic-sales-data/';
+  
+
+# Creates a managed table that can receive sales data from the external table:
+CREATE TABLE sales (
+    store_nbr bigint,
+    item_nbr bigint,
+    local_date date,
+    item_name string,
+    units double
+                   )
+PARTITIONED BY (city_name string);
+
+
+# Inserts data into sales:
+INSERT INTO sales PARTITION (city_name)
+SELECT  store_nbr, 
+        item_nbr, 
+        local_date, 
+        item_name, 
+        units, 
+        city_name 
+FROM sales_external;
